@@ -29,6 +29,17 @@ Logical kubernetes objects which are responsible for running containers.
 
 Usually, 1 pod is dealing with 1 container but we can have pods with mutliple containres called ```multicontainer pod```. These contains main container and helper containers for the main container.  
 
+just for example -
+
+```golang
+type Pod struct {
+    Container mainContainer
+    Container helperContainer
+}
+``` 
+
+ 
+
 commands -
 
 ```bash
@@ -43,3 +54,14 @@ kubectl describe pod myapp-pod
 kubectl delete pod myapp-pod
 ```
 
+## Replication Controller 
+Logical kubernetes object to handle scaling of Pods. It ensures particular no of Pods are running as per the ```replicas``` set.  
+
+Just for example -  
+
+```golang
+type ReplicationController struct {
+    Template podTemplate
+    Replicas int // no of replicas for above mentioned pod
+}
+```
