@@ -22,7 +22,20 @@ apiVersion:
 kind:
 metadata:
 spec:  
+```  
+
+## Container 
+Running instance of docker image which is sharing host OS core with other processes but is having its own OS packages to run the code(Ubuntu packages and libraries in case we are running Ubuntu docker image).
+
+
+```golang
+type Container struct {
+    Environemnt ownEnv // with required packages and libs
+    OSKernal sharedHostOSKernal // host OS kernal is shared 
+}
 ```
+
+
 ## Pods  
 
 Logical kubernetes objects which are responsible for running containers.  
@@ -34,7 +47,7 @@ just for example -
 ```golang
 type Pod struct {
     Container mainContainer
-    Container helperContainer
+    Container helperContainer // in case of multi container pods only
 }
 ``` 
 
