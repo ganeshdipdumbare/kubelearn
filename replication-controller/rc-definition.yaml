@@ -8,7 +8,7 @@ metadata:
 spec:
   template:
     metadata:
-      name: myapp-pod
+      name: nginx-pod
       labels:
         app: myapp
         type: front-end

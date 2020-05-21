@@ -36,7 +36,7 @@ type Container struct {
 ```
 
 
-## Pods  
+## Pod  
 
 Logical kubernetes objects which are responsible for running containers.  
 
@@ -68,7 +68,7 @@ kubectl delete pod myapp-pod
 ```
 
 ## Replication Controller 
-Logical kubernetes object to handle scaling of Pods. It ensures particular no of Pods are running as per the ```replicas``` set.  
+Logical kubernetes object to handle load balancing & scaling,high availability of Pods. It ensures particular no of Pods are running as per the ```replicas``` set.  
 
 Just for example -  
 
@@ -77,4 +77,35 @@ type ReplicationController struct {
     Template podTemplate
     Replicas int // no of replicas for above mentioned pod
 }
+```  
+
+commands -  
+
+```
+kubectl create -f replication-controller/rc-config.yaml
+kubectl get rc
+kubectl scale --replicas=8 -f replication-controller/rc-config.yaml
+kubectl delete rc rc-nginx
+```
+
+## Replica Set
+It is similar to replication controller object to handle load balancing & scaling,high availability of Pods. It ensures particular no of Pods are running as per the ```replicas``` set. It has added feature called ```selector``` which is being used to check if particular pods are already running, if yes then these pods will be added to replica set.  
+
+Just for example -  
+
+```golang
+type ReplicaSet struct {
+    Template podTemplate
+    Replicas int // no of replicas for above mentioned pod
+    Selector podSelector // match particular pods to be added to replica set
+}
+```  
+
+commands -  
+
+```
+kubectl create -f replica-set/rs-config.yaml
+kubectl get rs
+kubectl scale --replicas=8 -f replica-set/rs-config.yaml
+kubectl delete rs rs-nginx
 ```
