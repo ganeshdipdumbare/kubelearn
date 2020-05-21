@@ -89,7 +89,7 @@ kubectl delete rc rc-nginx
 ```
 
 ## Replica Set
-It is similar to replication controller object to handle load balancing & scaling,high availability of Pods. It ensures particular no of Pods are running as per the ```replicas``` set. It has added feature called ```selector``` which is being used to check if particular pods are already running, if yes then these pods will be added to replica set.  
+It is similar to replication controller object to handle load balancing & scaling,high availability of Pods. It ensures particular no of Pods are running as per the ```replicas``` set. It has added feature called ```selector``` which is being used to check if particular pods are already running, if yes then these pods will be added to replica set. Only pods without parents(replicaSet or replicationController) will be matched.
 
 Just for example -  
 
