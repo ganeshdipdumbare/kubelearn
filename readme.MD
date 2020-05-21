@@ -85,6 +85,8 @@ commands -
 kubectl create -f replication-controller/rc-config.yaml
 kubectl get rc
 kubectl scale --replicas=8 -f replication-controller/rc-config.yaml
+kubectl scale --replicas=8 rc rc-nginx
+kubectl edit rc rc-nginx
 kubectl delete rc rc-nginx
 ```
 
@@ -107,5 +109,7 @@ commands -
 kubectl create -f replica-set/rs-config.yaml
 kubectl get rs
 kubectl scale --replicas=8 -f replica-set/rs-config.yaml
+kubectl scale --replicas=8 rs rs-nginx
+kubectl edit rs rs-nginx
 kubectl delete rs rs-nginx
 ```
