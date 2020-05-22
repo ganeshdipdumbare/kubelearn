@@ -113,3 +113,36 @@ kubectl scale --replicas=8 rs rs-nginx
 kubectl edit rs rs-nginx
 kubectl delete rs rs-nginx
 ```
+
+## Deployment
+Kubernetes object for handling deployments of replica sets. The main use cases of deployment is as follows -  
+
+-   Rollout replica sets
+-   Deploy the new  state of pods
+-   Rollback to an earlier version
+-   Pause the deployments
+-   Use the status of the deployment
+-   Clean up older replica sets
+
+
+Just for an example -
+
+```golang
+type Deployment struct {
+    Template podTemplate
+    Replicas int // no of replicas for above mentioned pod
+    Selector podSelector // match particular pods to be added to replica set
+}
+``` 
+
+commands -  
+
+```
+kubectl create -f deployment/deployment.yaml --record=true
+kubectl get deployment
+kubectl rollout status deployment nginx-deployment
+kubectl rollout history deployment nginx-deployment
+kubectl rollout undo deployment nginx-deployment --to-revision=2
+kubectl scale --replicas=6 deployment nginx-deployment
+kubectl delete deployment nginx-deployment
+```
